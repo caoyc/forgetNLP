@@ -3,3 +3,10 @@
 ################################################################################
 
 /遗忘词库程序/CommonHelper/bin
+/遗忘词库程序/CommonHelper/obj
+/遗忘词库程序/ForgetNLP_WordLib_Demo/bin
+/遗忘词库程序/ForgetNLP_WordLib_Demo/obj/Debug
+/遗忘词库程序/WSR_Forget_Core/bin
+/遗忘词库程序/WSR_Forget_Core/obj
+/遗忘词库程序/WSR_Forget_SDK/bin
+/遗忘词库程序/WSR_Forget_SDK/obj
