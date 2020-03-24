@@ -142,6 +142,7 @@
             this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
             this.label20 = new System.Windows.Forms.Label();
             this.tabPage19 = new System.Windows.Forms.TabPage();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
             this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
             this.label22 = new System.Windows.Forms.Label();
@@ -186,6 +187,7 @@
             this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
             this.label27 = new System.Windows.Forms.Label();
             this.tabPage27 = new System.Windows.Forms.TabPage();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.label28 = new System.Windows.Forms.Label();
             this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
             this.label29 = new System.Windows.Forms.Label();
@@ -203,8 +205,6 @@
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.groupBox5.SuspendLayout();
             this.tabCorpusPageContent.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -1679,6 +1679,16 @@
             this.tabPage19.Text = "生成";
             this.tabPage19.UseVisualStyleBackColor = true;
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(24, 74);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(168, 16);
+            this.checkBox2.TabIndex = 19;
+            this.checkBox2.Text = "生成基准词库时不启用遗忘";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // label21
             // 
             this.label21.AutoSize = true;
@@ -2209,6 +2219,16 @@
             this.tabPage27.Text = "生成";
             this.tabPage27.UseVisualStyleBackColor = true;
             // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(24, 74);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(168, 16);
+            this.checkBox3.TabIndex = 20;
+            this.checkBox3.Text = "生成相对词库时不启用遗忘";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
             // label28
             // 
             this.label28.AutoSize = true;
@@ -2420,26 +2440,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "您的支持，是我们前进的动力。";
             // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(24, 74);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(168, 16);
-            this.checkBox2.TabIndex = 19;
-            this.checkBox2.Text = "生成基准词库时不启用遗忘";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(24, 74);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(168, 16);
-            this.checkBox3.TabIndex = 20;
-            this.checkBox3.Text = "生成相对词库时不启用遗忘";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
             // frmDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2448,7 +2448,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "遗忘算法词库生成演示程序 by 老憨  QQ交流群：217947873";
+            this.Text = "遗忘算法词库生成工具";
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.tabCorpusPageContent.ResumeLayout(false);

@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 using ForgetNLP_WordLib_Demo.Config;
 namespace ForgetNLP_WordLib_Demo
 {
@@ -17,6 +18,9 @@ namespace ForgetNLP_WordLib_Demo
         public frmDesktop()
         {
             InitializeComponent();
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            this.Text = String.Format("{0} v{1}.{2}.{3}   by 老憨  QQ交流群：217947873 ", this.Text, version.Major, version.Minor, version.Build);
+
             AppDomain.CurrentDomain.SetData("REGEX_DEFAULT_MATCH_TIMEOUT", TimeSpan.FromSeconds(5));
 
         }
