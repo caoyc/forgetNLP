@@ -70,6 +70,7 @@
             this.btnKeyWordExecute = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnKeyWordSegment = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
@@ -115,6 +116,7 @@
             this.button10 = new System.Windows.Forms.Button();
             this.progressBar6 = new System.Windows.Forms.ProgressBar();
             this.button11 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
@@ -726,6 +728,7 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.button5);
             this.splitContainer2.Panel2.Controls.Add(this.button3);
             this.splitContainer2.Panel2.Controls.Add(this.button14);
             this.splitContainer2.Panel2.Controls.Add(this.button15);
@@ -773,7 +776,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(51, 83);
+            this.button1.Location = new System.Drawing.Point(50, 83);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 28);
             this.button1.TabIndex = 22;
@@ -817,7 +820,7 @@
             // 
             // btnKeyWordSegment
             // 
-            this.btnKeyWordSegment.Location = new System.Drawing.Point(51, 49);
+            this.btnKeyWordSegment.Location = new System.Drawing.Point(50, 49);
             this.btnKeyWordSegment.Name = "btnKeyWordSegment";
             this.btnKeyWordSegment.Size = new System.Drawing.Size(75, 28);
             this.btnKeyWordSegment.TabIndex = 18;
@@ -825,9 +828,19 @@
             this.btnKeyWordSegment.UseVisualStyleBackColor = true;
             this.btnKeyWordSegment.Click += new System.EventHandler(this.btnKeyWordSegment_Click);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(84, 1);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 8;
+            this.button5.Text = "从文本导入";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(23, 1);
+            this.button3.Location = new System.Drawing.Point(3, 1);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 7;
@@ -837,9 +850,9 @@
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(292, 1);
+            this.button14.Location = new System.Drawing.Point(303, 1);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
+            this.button14.Size = new System.Drawing.Size(60, 23);
             this.button14.TabIndex = 3;
             this.button14.Text = "清空";
             this.button14.UseVisualStyleBackColor = true;
@@ -847,9 +860,9 @@
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(198, 1);
+            this.button15.Location = new System.Drawing.Point(234, 1);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.Size = new System.Drawing.Size(60, 23);
             this.button15.TabIndex = 5;
             this.button15.Text = "加载";
             this.button15.UseVisualStyleBackColor = true;
@@ -857,9 +870,9 @@
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(117, 1);
+            this.button16.Location = new System.Drawing.Point(170, 1);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(75, 23);
+            this.button16.Size = new System.Drawing.Size(60, 23);
             this.button16.TabIndex = 4;
             this.button16.Text = "保存";
             this.button16.UseVisualStyleBackColor = true;
@@ -1263,6 +1276,7 @@
             // 
             // splitContainer9.Panel2
             // 
+            this.splitContainer9.Panel2.Controls.Add(this.button7);
             this.splitContainer9.Panel2.Controls.Add(this.button4);
             this.splitContainer9.Panel2.Controls.Add(this.button12);
             this.splitContainer9.Panel2.Controls.Add(this.button19);
@@ -1317,7 +1331,7 @@
             // 
             // btnKeyWordKeyWord
             // 
-            this.btnKeyWordKeyWord.Location = new System.Drawing.Point(50, 80);
+            this.btnKeyWordKeyWord.Location = new System.Drawing.Point(50, 82);
             this.btnKeyWordKeyWord.Name = "btnKeyWordKeyWord";
             this.btnKeyWordKeyWord.Size = new System.Drawing.Size(75, 28);
             this.btnKeyWordKeyWord.TabIndex = 15;
@@ -1327,7 +1341,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(130, 44);
+            this.button6.Location = new System.Drawing.Point(130, 46);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(31, 65);
             this.button6.TabIndex = 16;
@@ -1337,7 +1351,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(14, 44);
+            this.button10.Location = new System.Drawing.Point(14, 46);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(31, 65);
             this.button10.TabIndex = 13;
@@ -1347,14 +1361,14 @@
             // 
             // progressBar6
             // 
-            this.progressBar6.Location = new System.Drawing.Point(14, 33);
+            this.progressBar6.Location = new System.Drawing.Point(14, 34);
             this.progressBar6.Name = "progressBar6";
             this.progressBar6.Size = new System.Drawing.Size(147, 8);
             this.progressBar6.TabIndex = 17;
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(50, 45);
+            this.button11.Location = new System.Drawing.Point(50, 47);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(75, 28);
             this.button11.TabIndex = 14;
@@ -1362,9 +1376,19 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(84, 1);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 9;
+            this.button7.Text = "从文本导入";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(22, 1);
+            this.button4.Location = new System.Drawing.Point(3, 1);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
@@ -1374,9 +1398,9 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(292, 1);
+            this.button12.Location = new System.Drawing.Point(303, 1);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.Size = new System.Drawing.Size(60, 23);
             this.button12.TabIndex = 3;
             this.button12.Text = "清空";
             this.button12.UseVisualStyleBackColor = true;
@@ -1384,9 +1408,9 @@
             // 
             // button19
             // 
-            this.button19.Location = new System.Drawing.Point(198, 1);
+            this.button19.Location = new System.Drawing.Point(234, 1);
             this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(75, 23);
+            this.button19.Size = new System.Drawing.Size(60, 23);
             this.button19.TabIndex = 5;
             this.button19.Text = "加载";
             this.button19.UseVisualStyleBackColor = true;
@@ -1394,9 +1418,9 @@
             // 
             // button20
             // 
-            this.button20.Location = new System.Drawing.Point(117, 1);
+            this.button20.Location = new System.Drawing.Point(170, 1);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(75, 23);
+            this.button20.Size = new System.Drawing.Size(60, 23);
             this.button20.TabIndex = 4;
             this.button20.Text = "保存";
             this.button20.UseVisualStyleBackColor = true;
@@ -1853,7 +1877,7 @@
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(71, 16);
             this.radioButton3.TabIndex = 26;
-            this.radioButton3.Text = "增量词库";
+            this.radioButton3.Text = "热词词库";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton4
@@ -2323,8 +2347,8 @@
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(376, 196);
             this.textBox6.TabIndex = 0;
-            this.textBox6.Text = "\r\n【QQ/微信】244589712\r\n【QQ交流群】217947873\r\n【邮箱】gzdmcaoyc@163.com\r\n【博客】https://blog.csd" +
-    "n.net/gzdmcaoyc\r\n\r\nBy 老憨 2020年3月23日";
+            this.textBox6.Text = "\r\n【QQ/微信】244589712\r\n【QQ交流群】217947873\r\n【邮箱】gzdmcaoyc@163.com\r\n【博客、源码】\r\nhttps://blo" +
+    "g.csdn.net/gzdmcaoyc\r\nhttps://github.com/caoyc/forgetNLP\r\n\r\nBy 老憨 2020年3月23日";
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox6.WordWrap = false;
             // 
@@ -2770,5 +2794,7 @@
         public System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
+        public System.Windows.Forms.Button button5;
+        public System.Windows.Forms.Button button7;
     }
 }

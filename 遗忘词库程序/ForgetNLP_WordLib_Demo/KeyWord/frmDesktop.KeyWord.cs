@@ -955,7 +955,7 @@ namespace ForgetNLP_WordLib_Demo
 
                            
 
-                            AppendText("正在导出增量词库，请稍候……");
+                            AppendText("正在导出热词词库，请稍候……");
                             
                             StringBuilder sb = new StringBuilder();
                             sb.AppendLine("【词条】遗忘词频");
@@ -1044,7 +1044,7 @@ namespace ForgetNLP_WordLib_Demo
                             WSR_Forget_Core.KeyItem.KeyItemColl<string> objKeyWordColl = null;
 
 
-                            AppendText("正在导出增量词库，请稍候……");
+                            AppendText("正在导出热词词库，请稍候……");
                             objKeyWordColl = gobjDataConfig.KeyWord.IncrementWordColl = WSR_Forget_Core.KeyItem.KeyItemDAL.ClearKeyItemColl<string>(gobjDataConfig.KeyWord.IncrementWordColl);
 
                             StringBuilder sb = new StringBuilder();
@@ -1082,7 +1082,7 @@ namespace ForgetNLP_WordLib_Demo
             {
                 this.ExecuteByDesktop(this.KeyWord_Topic_UpdateKeyWordColl);
             }
-            if (this.radioButton3.Checked) //增量词库
+            if (this.radioButton3.Checked) //热词词库
             {
                 gobjDataConfig.KeyWord.IncrementWordColl = WSR_Forget_Core.KeyItem.KeyItemDAL.ClearKeyItemColl(gobjDataConfig.KeyWord.StandardWordColl);
                 this.ExecuteByDesktop(this.KeyWord_Increment_UpdateKeyWordColl);
@@ -1102,7 +1102,7 @@ namespace ForgetNLP_WordLib_Demo
                 {
                     this.rtbInfoBoard.Text = this.KeyWord_Topic_ShowKeyWordColl_KL(gobjDataConfig);
                 }
-                if (this.radioButton3.Checked) //增量词库
+                if (this.radioButton3.Checked) //热词词库
                 {
                     this.rtbInfoBoard.Text = this.KeyWord_Increment_ShowKeyWordColl_KL(gobjDataConfig);
                 }
@@ -1113,7 +1113,7 @@ namespace ForgetNLP_WordLib_Demo
                 {
                     this.rtbInfoBoard.Text = this.KeyWord_Topic_ShowKeyWordColl(gobjDataConfig);
                 }
-                if (this.radioButton3.Checked) //增量词库
+                if (this.radioButton3.Checked) //热词词库
                 {
                     this.rtbInfoBoard.Text = this.KeyWord_Increment_ShowKeyWordColl(gobjDataConfig);
                 }
@@ -1136,9 +1136,9 @@ namespace ForgetNLP_WordLib_Demo
                     this.AppendText(String.Format("【提示】主题词库清空完成。"));
                 }
             }
-            if (this.radioButton3.Checked) //增量词库
+            if (this.radioButton3.Checked) //热词词库
             {
-                if (MessageBox.Show("确认清空增量词库？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+                if (MessageBox.Show("确认清空热词词库？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
                 {
                     gobjDataConfig.KeyWord.IncrementWordColl.Clear();
                     this.AppendText(String.Format("【提示】主题词库清空完成。"));
@@ -1190,7 +1190,7 @@ namespace ForgetNLP_WordLib_Demo
                     string filename = saveFileDialog.FileName;
                     try
                     {
-                        AppendText("正在保存增量词库，请稍候……");
+                        AppendText("正在保存热词词库，请稍候……");
                         string sKeyWordPathFile = saveFileDialog.FileName;// Path.GetFullPath(String.Format(@"{0}\{1}", floder, "BasicKeyWord.coll"));
 
                         gobjDataConfig.KeyWord.IncrementWordColl = WSR_Forget_Core.KeyItem.KeyItemDAL.ClearKeyItemColl<string>(gobjDataConfig.KeyWord.IncrementWordColl);
@@ -1264,7 +1264,7 @@ namespace ForgetNLP_WordLib_Demo
 
                     try
                     {
-                        AppendText("正在加载增量词库，请稍候……");
+                        AppendText("正在加载热词词库，请稍候……");
 
                         string sKeyWordPathFile = openFileDialog.FileName;// Path.GetFullPath(String.Format(@"{0}\{1}", floder, "BasicKeyWord.coll"));
 
@@ -1276,7 +1276,7 @@ namespace ForgetNLP_WordLib_Demo
                         }
                         else
                         {
-                            AppendText("【警告】增量词库不存在。");
+                            AppendText("【警告】热词词库不存在。");
                         }
 
                         AppendText("加载完毕。");

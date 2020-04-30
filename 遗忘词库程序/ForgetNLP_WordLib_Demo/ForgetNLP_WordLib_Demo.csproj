@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\WordConvertDAL.cs" />
     <Compile Include="Config\ProjectConfig.cs" />
     <Compile Include="frmDesktop.cs">
       <SubType>Form</SubType>
@@ -92,6 +93,7 @@
       <Name>WSR_Neure_SDK</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
