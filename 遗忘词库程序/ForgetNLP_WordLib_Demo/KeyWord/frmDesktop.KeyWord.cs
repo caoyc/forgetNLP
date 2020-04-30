@@ -12,7 +12,133 @@ namespace ForgetNLP_WordLib_Demo
    partial class frmDesktop
     {
         #region 词库：原始
+        /// <summary>
+        /// 原始/操作/从文本导入
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button5_Click(object sender, EventArgs e)
+        {
 
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = CommonHelper.CachePathDAL.GetSubWorkSpacePath("KeyWord");
+            //openFileDialog.FileName = "OriginalKeyWord.coll";
+
+            openFileDialog.Filter = "词库文件(*.txt)|*.txt|所有文件(*.*)|*.*";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                try
+                {
+                    AppendText("正在导入文本词库，请稍候……");
+
+                    string sKeyWordPathFile = openFileDialog.FileName;// Path.GetFullPath(String.Format(@"{0}\{1}", floder, "BasicKeyWord.coll"));
+
+                    if (File.Exists(sKeyWordPathFile))
+                    {
+                        WSR_Forget_Core.KeyItem.KeyItemColl<string> objConvertWordColl = new WSR_Forget_Core.KeyItem.KeyItemColl<string>();
+                        double dConvertTotalOffset = 0;
+
+                        string sPathFile = sKeyWordPathFile;
+
+                        {
+                            //this.AppendText(String.Format("【进行】{0}", sPathFile));
+
+                            FileInfo info = new FileInfo(sPathFile);
+                            double dFileCharLength = info.Length;
+                            double dLoadCharLength = 0;
+
+                            DateTime dtUpdateTime = DateTime.Now;
+                            this.pgbScanLines.Maximum = Convert.ToInt32(Math.Min(Int32.MaxValue, dFileCharLength));
+                            this.pgbScanLines.Minimum = 0;
+                            this.pgbScanLines.Value = this.pgbScanLines.Minimum;
+                            using (StreamReader sr = new StreamReader(sPathFile, Encoding.UTF8))
+                            {
+                                string line = null;
+                                while ((line = sr.ReadLine()) != null)
+                                {
+                                    Application.DoEvents();
+                                    if (String.IsNullOrWhiteSpace(line)) continue;
+
+                                    dLoadCharLength += Encoding.UTF8.GetByteCount(line);
+                                    if (this.pgbScanLines.Maximum <= dLoadCharLength)
+                                    {
+                                        dFileCharLength = dFileCharLength - dLoadCharLength + 1;
+                                        this.pgbScanLines.Maximum = Convert.ToInt32(Math.Min(Int32.MaxValue, dFileCharLength));
+                                        this.pgbScanLines.Value = 0;
+                                        dLoadCharLength = 0;
+
+                                    }
+                                    this.pgbScanLines.Value = this.pgbScanLines.Maximum > dLoadCharLength ? Convert.ToInt32(dLoadCharLength) : this.pgbScanLines.Maximum - 1;
+
+                                    string text = line; //这里可以再做一些需要特别处理的数据清洗，如多余的空格等
+                                                        //if(this.pgbScanLines.Value*1.0/this.pgbScanLines.Maximum>0.65)  this.AppendText(line);
+                                 
+                                    if (!String.IsNullOrEmpty(text))
+                                    {
+                                        string pattern = @"^\s*[\[【](?<Word>.*?)[\]】](\s*(?<Freq>\d+(\.\d+)?))(.*?)$";
+                                        string groupName = "Word | Freq";
+
+                                        string[] objGroupNames = Regex.Split(groupName, "[|｜]+", RegexOptions.Singleline);
+                                        Dictionary<string, string> objNameContentDict = new Dictionary<string, string>();
+                                        List<string> objGroupNameList = new List<string>();
+
+                                        Match objMatch = Regex.Match(text, pattern, RegexOptions.Singleline);
+                                        if (!objMatch.Success) continue;
+
+                                        foreach (string name in objGroupNames)
+                                        {
+                                            string trimName = name.Trim();
+                                            if (String.IsNullOrEmpty(trimName)) continue;
+                                            objGroupNameList.Add(trimName);
+                                            if (!objNameContentDict.ContainsKey(trimName))
+                                            {
+                                                objNameContentDict.Add(trimName, objMatch.Groups[trimName].Value);
+                                            }
+                                        }
+                                        if (objNameContentDict.Count <= 0) continue;
+
+
+                                        string word = (objGroupNameList.Count > 0 && objNameContentDict.ContainsKey(objGroupNameList[0])) ? objNameContentDict[objGroupNameList[0]] : String.Empty;
+                                        string keyword = String.IsNullOrWhiteSpace(word.Trim()) ? String.Empty : word.Trim();
+
+                                        string freq = (objGroupNameList.Count > 1 && objNameContentDict.ContainsKey(objGroupNameList[1])) ? objNameContentDict[objGroupNameList[1]] : String.Empty;
+                                        double frequency = String.IsNullOrWhiteSpace(freq.Trim()) ? 1 : Convert.ToDouble(freq.Trim());
+
+                                        if (String.IsNullOrEmpty(keyword)) continue;
+                                        WSR_Forget_Core.KeyItem.KeyItemDAL.UpdateKeyItemColl(keyword, objConvertWordColl, new WSR_Forget_Core.Memory.OffsetWeightMDL(0, frequency));
+                                        dConvertTotalOffset += frequency;
+
+                                        
+                                    }
+                                }
+
+                            }
+                            this.pgbScanLines.Value = this.pgbScanLines.Maximum;
+                            this.pgbScanLines.Value = this.pgbScanLines.Minimum;
+
+                        }
+
+                        gobjDataConfig.KeyWord.BasicKeyWordColl = Common.WordLibDAL.FixWordColl(objConvertWordColl, dConvertTotalOffset);
+
+                    }
+                    else
+                    {
+                        AppendText("【警告】文本词库不存在。");
+                    }
+
+                    AppendText("加载完毕。");
+
+                }
+                catch (Exception ep)
+                {
+                    AppendText(String.Format("【错误】{0}", ep.Message));
+                }
+
+
+
+            }
+        }
         /// <summary>
         /// 生成
         /// </summary>
@@ -444,9 +570,131 @@ namespace ForgetNLP_WordLib_Demo
             }
         }
         #endregion
-         
-        #region 词库：基准
 
+        #region 词库：基准
+        /// <summary>
+        /// 基准/操作/从文本导入
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button7_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = CommonHelper.CachePathDAL.GetSubWorkSpacePath("KeyWord");
+            //openFileDialog.FileName = "OriginalKeyWord.coll";
+
+            openFileDialog.Filter = "词库文件(*.txt)|*.txt|所有文件(*.*)|*.*";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                try
+                {
+                    AppendText("正在导入文本词库，请稍候……");
+
+                    string sKeyWordPathFile = openFileDialog.FileName;// Path.GetFullPath(String.Format(@"{0}\{1}", floder, "BasicKeyWord.coll"));
+
+                    if (File.Exists(sKeyWordPathFile))
+                    {
+                        WSR_Forget_Core.KeyItem.KeyItemColl<string> objConvertWordColl = new WSR_Forget_Core.KeyItem.KeyItemColl<string>();
+                        double dConvertTotalOffset = 0;
+
+                        string sPathFile = sKeyWordPathFile;
+
+                        {
+                            //this.AppendText(String.Format("【进行】{0}", sPathFile));
+
+                            FileInfo info = new FileInfo(sPathFile);
+                            double dFileCharLength = info.Length;
+                            double dLoadCharLength = 0;
+
+                            DateTime dtUpdateTime = DateTime.Now;
+                            this.pgbScanLines.Maximum = Convert.ToInt32(Math.Min(Int32.MaxValue, dFileCharLength));
+                            this.pgbScanLines.Minimum = 0;
+                            this.pgbScanLines.Value = this.pgbScanLines.Minimum;
+                            using (StreamReader sr = new StreamReader(sPathFile, Encoding.UTF8))
+                            {
+                                string line = null;
+                                while ((line = sr.ReadLine()) != null)
+                                {
+                                    Application.DoEvents();
+                                    if (String.IsNullOrWhiteSpace(line)) continue;
+
+                                    dLoadCharLength += Encoding.UTF8.GetByteCount(line);
+                                    if (this.pgbScanLines.Maximum <= dLoadCharLength)
+                                    {
+                                        dFileCharLength = dFileCharLength - dLoadCharLength + 1;
+                                        this.pgbScanLines.Maximum = Convert.ToInt32(Math.Min(Int32.MaxValue, dFileCharLength));
+                                        this.pgbScanLines.Value = 0;
+                                        dLoadCharLength = 0;
+
+                                    }
+                                    this.pgbScanLines.Value = this.pgbScanLines.Maximum > dLoadCharLength ? Convert.ToInt32(dLoadCharLength) : this.pgbScanLines.Maximum - 1;
+
+                                    string text = line; //这里可以再做一些需要特别处理的数据清洗，如多余的空格等
+
+                                    if (!String.IsNullOrEmpty(text))
+                                    {
+                                        string pattern = @"^\s*[\[【](?<Word>.*?)[\]】](\s*(?<Freq>\d+(\.\d+)?))(.*?)$";
+                                        string groupName = "Word | Freq";
+
+                                        string[] objGroupNames = Regex.Split(groupName, "[|｜]+", RegexOptions.Singleline);
+                                        Dictionary<string, string> objNameContentDict = new Dictionary<string, string>();
+                                        List<string> objGroupNameList = new List<string>();
+
+                                        Match objMatch = Regex.Match(text, pattern, RegexOptions.Singleline);
+                                        if (!objMatch.Success) continue;
+
+                                        foreach (string name in objGroupNames)
+                                        {
+                                            string trimName = name.Trim();
+                                            if (String.IsNullOrEmpty(trimName)) continue;
+                                            objGroupNameList.Add(trimName);
+                                            if (!objNameContentDict.ContainsKey(trimName))
+                                            {
+                                                objNameContentDict.Add(trimName, objMatch.Groups[trimName].Value);
+                                            }
+                                        }
+                                        if (objNameContentDict.Count <= 0) continue;
+
+
+                                        string word = (objGroupNameList.Count > 0 && objNameContentDict.ContainsKey(objGroupNameList[0])) ? objNameContentDict[objGroupNameList[0]] : String.Empty;
+                                        string keyword = String.IsNullOrWhiteSpace(word.Trim()) ? String.Empty : word.Trim();
+
+                                        string freq = (objGroupNameList.Count > 1 && objNameContentDict.ContainsKey(objGroupNameList[1])) ? objNameContentDict[objGroupNameList[1]] : String.Empty;
+                                        double frequency = String.IsNullOrWhiteSpace(freq.Trim()) ? 1 : Convert.ToDouble(freq.Trim());
+
+                                        if (String.IsNullOrEmpty(keyword)) continue;
+                                        WSR_Forget_Core.KeyItem.KeyItemDAL.UpdateKeyItemColl(keyword, objConvertWordColl, new WSR_Forget_Core.Memory.OffsetWeightMDL(0, frequency));
+                                        dConvertTotalOffset += frequency;
+                                    }
+                                }
+
+                            }
+                            this.pgbScanLines.Value = this.pgbScanLines.Maximum;
+                            this.pgbScanLines.Value = this.pgbScanLines.Minimum;
+
+                        }
+
+                        gobjDataConfig.KeyWord.StandardWordColl = Common.WordLibDAL.FixWordColl(objConvertWordColl, dConvertTotalOffset);
+
+                    }
+                    else
+                    {
+                        AppendText("【警告】文本词库不存在。");
+                    }
+
+                    AppendText("加载完毕。");
+
+                }
+                catch (Exception ep)
+                {
+                    AppendText(String.Format("【错误】{0}", ep.Message));
+                }
+
+
+
+            }
+        }
         /// <summary>
         /// 基准/生成
         /// </summary>
